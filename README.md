@@ -43,3 +43,14 @@ Don.Denoncourt@Don-Denoncourt author % set git remote heroku to https://git.hero
 And that’s it. At this point, you can start writing your app like you’ve always done. To run it, you just need to type `rake start` and both React and Rails will start. Sweet, just one terminal window!
 
 To deploy your app, you just need to git add ., git commit -m and then issue git push heroku master. Don’t forget to seed your database with heroku run rake db:seed!
+
+to start
+`rake start`
+
+# header
+* books
+lead with Chinto, then Gentleman, then the tech books (maybe identified as such)
+* posts
+  all from linked in then some, maybe put these in a database
+    could have type: book|post
+main page to summarize genre about the current book series
