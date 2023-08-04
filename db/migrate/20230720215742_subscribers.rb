@@ -1,6 +1,6 @@
-class CreateSubcscribers < ActiveRecord::Migration[7.0]
+class Subscribers < ActiveRecord::Migration[6.0]
   def change
-    create_table :subcscribers do |t|
+    create_table :subscribers do |t|
       t.string :first_name
       t.string :last_name
       t.string :email

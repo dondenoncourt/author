@@ -1,12 +1,14 @@
 //import logo from './logo.svg';
 import logo from './shodan-test-board.jpg';
 import './App.css';
+import Skills from './skills.js';
+import Subscribers from './subscribers.js';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="shodan-logo" alt="logo" />
+        //<img src={logo} className="shodan-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -19,6 +21,8 @@ function App() {
           Learn React Slowly
         </a>
       </header>
+      <Subscribers/>
+      <Skills/>
     </div>
   );
 }

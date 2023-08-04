@@ -1,2 +1,0 @@
-class Subcscriber < ApplicationRecord
-end
