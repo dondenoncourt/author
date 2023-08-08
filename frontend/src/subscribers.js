@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
+
 const Subscribers=()=>{
-  const subscribersAPI = "http://localhost:3001/subscribers.json";
+  const subscribersAPI = "subscribers.json";
   const [subscribers, setSubscribers] = useState([]);
 
-  useEffect(() => {
-    fetch(subscribersAPI)
-      .then((response) => response.json())
-      .then(setSubscribers);
-  }, []);
+
+  useEffect(()=> {
+  fetch(subscribersAPI)
+          .then((res) => res.json())
+          .then((res) => {setSubscribers(res)})
+          .catch((err) => console.error(err))
+  }, [])
 
   return(
      <section>
       <h3>Subscribers</h3>
       <ul>
         {subscribers.map((subscriber) => (
-          <li key={subscriber.id}>{subscriber.first_name}</li>
+          <li key={subscriber.id}>{subscriber.first_name} {subscriber.last_name}</li>
         ))}
       </ul>
      </section>
