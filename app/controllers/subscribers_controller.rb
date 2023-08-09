@@ -3,8 +3,13 @@ class SubscribersController < ApplicationController
 
   # GET /subscribers
   def index
-    puts 'got here'
+    puts 'got here again'
     @subscribers = Subscriber.all
+
+    puts "subscribers: #{@subscribers}"
+    @subscribers.each do |subscriber|
+      puts "subscriber: #{subscriber.first_name}"
+    end
 
     render json: @subscribers
   end

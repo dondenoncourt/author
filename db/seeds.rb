@@ -6,3 +6,4 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 Subscriber.create(first_name: 'don', last_name: 'denoncourt', email: 'dondenoncourt@gmail.com')
+Subscriber.create(first_name: 'Suzanne', last_name: 'Denoncourt', email: 'suzannerdenoncourt@gmail.com')

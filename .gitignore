@@ -23,6 +23,8 @@ app/.DS_Store
 
 /.public
 
+/node_modules
+
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
