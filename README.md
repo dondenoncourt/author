@@ -25,6 +25,9 @@ things you may want to cover:
 
 added ssh on litera box
 
+# TODO
+1. Accordion
+
 
 === dondenoncourt@gmail.com Apps
 infinite-chamber-86506
