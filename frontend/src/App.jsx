@@ -1,6 +1,5 @@
-//import logo from './logo.svg';
 import React from 'react';
-import logo from './shodan-test-board.jpg';
+import testBoard from './shodan-test-board.jpg';
 import './App.css';
 import Skills from './skills.js';
 import Subscribers from './subscribers.js';
@@ -17,21 +16,17 @@ function App() {
     <React.Fragment>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="shodan-logo" alt="logo" />
+          <img src={testBoard} className="shodan-logo" alt="logo" />
         </header>
-        <Subscribers/>
-        <Skills/>
-      </div>
-      <div>
         <Accordion>
           <AccordionItem value="1">
-            <AccordionHeader>Accordion Header 1</AccordionHeader>
+            <AccordionHeader>Subscribers</AccordionHeader>
             <AccordionPanel>
               <Subscribers/>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem value="2">
-            <AccordionHeader>Accordion Header 2</AccordionHeader>
+            <AccordionHeader>Skills</AccordionHeader>
             <AccordionPanel>
               <Skills/>
             </AccordionPanel>

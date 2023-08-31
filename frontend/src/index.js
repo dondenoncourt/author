@@ -3,10 +3,10 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import './index.css';
 import App from './App';
-import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import { FluentProvider, teamsLightTheme } from '@fluentui/react-components';
 
 ReactDOM.render(
-  <FluentProvider theme={webLightTheme}>
+  <FluentProvider className="fluent-provider">
     <App />
   </FluentProvider>, document.getElementById("root")
 );
