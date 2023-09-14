@@ -3,6 +3,7 @@ import testBoard from './shodan-test-board.jpg';
 import './App.css';
 import Skills from './skills.js';
 import Subscribers from './subscribers.js';
+import Publishments from './publishments.js';
 import { getTheme, mergeStyleSets } from '@fluentui/react'
 import {
   ThemeProvider, initializeIcons
@@ -53,6 +54,12 @@ function App() {
               </div>
             </Sticky>
             <Subscribers/>
+            <Sticky stickyPosition={StickyPositionType.Both}>
+              <div role="heading" aria-level={1} className={classNames.sticky}>
+                Publishments
+              </div>
+            </Sticky>
+            <Publishments/>
             <Sticky stickyPosition={StickyPositionType.Both}>
               <div role="heading" aria-level={1} className={classNames.sticky}>
                 Skills
