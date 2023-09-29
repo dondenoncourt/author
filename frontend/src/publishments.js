@@ -1,20 +1,30 @@
 import { useState, useEffect } from "react";
 import {
   DocumentCard,
-  DocumentCardActivity,
-  DocumentCardDetails,
-  DocumentCardPreview,
   DocumentCardTitle,
   IDocumentCardPreviewProps,
   DocumentCardType,
-  IDocumentCardActivityPerson,
 } from '@fluentui/react/lib/DocumentCard';
 import { Stack, IStackTokens } from '@fluentui/react/lib/Stack';
-import { getTheme } from '@fluentui/react/lib/Styling';
+import { getTheme, mergeStyleSets } from '@fluentui/react/lib/Styling';
 
-const stackTokens: IStackTokens = { childrenGap: 20 };
 const theme = getTheme();
-const { palette, fonts } = theme;
+const classNames = mergeStyleSets({
+  bigBoxes: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  cards: {
+    height: '220px',
+    width: '300px',
+    margin: '5px',
+    backgroundColor: '#f2f2f2', // set to desired shade of grey
+  },
+});
+
+const stackTokens: IStackTokens = { childrenGap: 40 };
 
 const openDocument = (link) => { window.open(link); }
 
@@ -28,23 +38,22 @@ const Publishments=() => {
   useEffect(()=> {
     fetch(publishmentsAPI)
             .then((res) => res.json())
-            .then((res) => {setPublishments(res)})
+            .then((res) => { setPublishments(res); })
             .catch((err) => console.error(err))
   }, [])
 
   return(
-    <Stack tokens={stackTokens}>
+    <Stack tokens={stackTokens} className={classNames.bigBoxes}>
       {publishments.map((publishment) => (
         <DocumentCard
           aria-label={publishment.title}
           type={DocumentCardType.large}
+          className={classNames.cards}
           onClick={() => openDocument(publishment.link)}
         >
-          <DocumentCardTitle
-            title={publishment.title}
-            shouldTruncate
-          />
-            {publishment.summary}
+          <DocumentCardTitle title={publishment.title} />
+            <div>{publishment.summary}</div>
+            <img height="100px" src={publishment.image}/>
         </DocumentCard>
       ))}
     </Stack>
