@@ -17,7 +17,7 @@ const classNames = mergeStyleSets({
     alignItems: 'center',
   },
   cards: {
-    height: '220px',
+    height: '250px',
     width: '300px',
     margin: '5px',
     backgroundColor: '#f2f2f2', // set to desired shade of grey
