@@ -3,7 +3,6 @@ class PublishmentsController < ApplicationController
 
   # GET /publishments
   def index
-    Rails.logger.info 'got here again'
     @publishments = Publishment.all
 
     Rails.logger.info "publishments: #{@publishments}"

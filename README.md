@@ -2,27 +2,6 @@
 this readme would normally document whatever steps are necessary to get the
 application up and running.
 
-things you may want to cover:
-
-* ruby version
-
-* system dependencies
-
-* configuration
-
-* database creation
-
-* database initialization
-
-* how to run the test suite
-
-* services (job queues, cache servers, search engines, etc.)
-
-* deployment instructions
-
-* ...
-
-
 added ssh on litera box
 
 # TODO

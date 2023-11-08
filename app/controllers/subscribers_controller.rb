@@ -21,9 +21,11 @@ class SubscribersController < ApplicationController
 
   # POST /subscribers
   def create
+    Rails.logger.info "subscriber_params: #{subscriber_params}"
     @subscriber = Subscriber.new(subscriber_params)
 
     if @subscriber.save
+      SubscriptionMailer.with(subscriber: @subscriber).confirmation(@subscriber).deliver_now
       render json: @subscriber, status: :created, location: @subscriber
     else
       render json: @subscriber.errors, status: :unprocessable_entity

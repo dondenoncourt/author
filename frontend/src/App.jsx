@@ -4,6 +4,7 @@ import './App.css';
 import Skills from './skills.js';
 import Subscribers from './subscribers.js';
 import Publishments from './publishments.js';
+import Signup from './signup.jsx'; // import the Signup component
 import { getTheme, mergeStyleSets } from '@fluentui/react'
 import { ScrollablePane, IScrollablePaneStyles } from '@fluentui/react/lib/ScrollablePane';
 import { Sticky, StickyPositionType } from '@fluentui/react/lib/Sticky';
@@ -49,6 +50,12 @@ function App() {
               <div role="heading" aria-level={1} className={classNames.sticky}>
                 Publishments
               </div>
+            </Sticky>
+            <Sticky stickyPosition={StickyPositionType.Both}>
+              <div role="heading" aria-level={1} className={classNames.sticky}>
+                Sign Up for Our Mailing List
+              </div>
+              <Signup /> {/* add the Signup component */}
             </Sticky>
             <Publishments/>
             <Sticky stickyPosition={StickyPositionType.Both}>

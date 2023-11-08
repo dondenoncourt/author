@@ -21,7 +21,7 @@ Publishment.create(title: 'One Too Many Monitors', link: 'https://dev.to/dondeno
 
 Publishment.create(title: 'The Donut Scam', link: 'https://dev.to/dondenoncourt/the-donut-scam-1c11', summary: 'True confessions of how I scammed donuts from innocent ladies at work in the 1980s', published_at: '2020-01-06', image: 'box_of_donuts.jpg', style: 'post')
 
-Publishment.create(title: 'A Fictional Account of How I Invented', link: 'https://www.simplethread.com/how-i-invented-react/', summary: 'This tongue-in-cheek post covers how I began to "develop a simplified perspective of why React was created and how it was implemented', published_at: '2019-19-02', image: 'react_fiction.jpg', style: 'post')
+Publishment.create(title: 'A Fictional Account of How I Invented React', link: 'https://www.simplethread.com/how-i-invented-react/', summary: 'This tongue-in-cheek post covers how I began to "develop a simplified perspective of why React was created and how it was implemented', published_at: '2019-19-02', image: 'react_fiction.jpg', style: 'post')
 
 Publishment.create(title: 'Total Recall:: How to Memorize a Technical Book', link: 'https://www.simplethread.com/total-recall-memorize-a-tech-book/', summary: 'This post covers how to use the memory palace technique to memorize technical books.', published_at: '2018-01-01', image: 'total_recall.jpg', style: 'post')
 
