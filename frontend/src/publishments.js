@@ -1,39 +1,11 @@
 import { useState, useEffect } from "react";
-import {
-  DocumentCard,
-  DocumentCardTitle,
-  IDocumentCardPreviewProps,
-  DocumentCardType,
-} from '@fluentui/react/lib/DocumentCard';
-import { Stack, IStackTokens } from '@fluentui/react/lib/Stack';
-import { getTheme, mergeStyleSets } from '@fluentui/react/lib/Styling';
-
-const theme = getTheme();
-const classNames = mergeStyleSets({
-  bigBoxes: {
-    display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  cards: {
-    height: '250px',
-    width: '300px',
-    margin: '5px',
-    backgroundColor: '#f2f2f2', // set to desired shade of grey
-  },
-});
-
-const stackTokens: IStackTokens = { childrenGap: 40 };
+import { Card, CardContent, CardMedia, Typography, Box, Stack } from '@mui/material';
 
 const openDocument = (link) => { window.open(link); }
 
 const Publishments=() => {
   const publishmentsAPI = "publishments.json";
   const [publishments, setPublishments] = useState([]);
-  const previewProps: IDocumentCardPreviewProps = { previewImages: publishments };
-  /*const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];*/
-  const DocumentCardActivityPeople = [{ name: 'Annie Lindqvist', profileImageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm9v7G3n1bvU0qWYvuetfJY1XJM0bbzo7CAn8BignF&s' }];
 
   useEffect(()=> {
     fetch(publishmentsAPI)
@@ -43,20 +15,46 @@ const Publishments=() => {
   }, [])
 
   return(
-    <Stack tokens={stackTokens} className={classNames.bigBoxes}>
-      {publishments.map((publishment) => (
-        <DocumentCard
+    <Box sx={{ 
+      display: 'flex', 
+      flexFlow: 'row wrap', 
+      justifyContent: 'space-between', 
+      alignItems: 'center',
+      gap: 5
+    }}>
+      {publishments.map((publishment, index) => (
+        <Card
+          key={index}
           aria-label={publishment.title}
-          type={DocumentCardType.large}
-          className={classNames.cards}
+          sx={{ 
+            height: '250px',
+            width: '300px',
+            margin: '5px',
+            backgroundColor: '#f2f2f2',
+            cursor: 'pointer',
+            '&:hover': {
+              boxShadow: 4
+            }
+          }}
           onClick={() => openDocument(publishment.link)}
         >
-          <DocumentCardTitle title={publishment.title} />
-            <div>{publishment.summary}</div>
-            <img height="100px" src={publishment.image}/>
-        </DocumentCard>
+          <CardContent>
+            <Typography variant="h6" component="div" gutterBottom>
+              {publishment.title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {publishment.summary}
+            </Typography>
+          </CardContent>
+          <CardMedia
+            component="img"
+            height="100"
+            image={publishment.image}
+            alt={publishment.title}
+          />
+        </Card>
       ))}
-    </Stack>
+    </Box>
   );
 }
 

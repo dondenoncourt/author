@@ -5,33 +5,7 @@ import Skills from './skills.js';
 import Subscribers from './subscribers.js';
 import Publishments from './publishments.js';
 import Signup from './signup.jsx'; // import the Signup component
-import { getTheme, mergeStyleSets } from '@fluentui/react'
-import { ScrollablePane, IScrollablePaneStyles } from '@fluentui/react/lib/ScrollablePane';
-import { Sticky, StickyPositionType } from '@fluentui/react/lib/Sticky';
-
-const theme = getTheme();
-const classNames = mergeStyleSets({
-  wrapper: {
-    height: '840vh',
-    position: 'relative',
-    maxHeight: 'inherit',
-  },
-  pane: {
-    width: '100%',
-    border: '1px solid ' + theme.palette.neutralLight,
-  },
-  sticky: {
-    color: theme.palette.neutralDark,
-    padding: '5px 20px 5px 10px',
-    fontSize: '13px',
-    borderTop: '1px solid ' + theme.palette.black,
-    borderBottom: '1px solid ' + theme.palette.black,
-  },
-  textContent: {
-    padding: '15px 10px',
-  },
-});
-const scrollablePaneStyles: Partial<IScrollablePaneStyles> = { root: classNames.pane };
+import { Box, Paper } from '@mui/material';
 
 function App() {
  return (
@@ -40,32 +14,65 @@ function App() {
         <header className="App-header">
           <img src={testBoard} className="shodan-logo" alt="logo" />
         </header>
-        <div className={classNames.wrapper}>
-          <ScrollablePane
-            scrollContainerFocus={true}
-            scrollContainerAriaLabel="Sticky component example"
-            styles={scrollablePaneStyles}
-          >
-            <Sticky stickyPosition={StickyPositionType.Both}>
-              <div role="heading" aria-level={1} className={classNames.sticky}>
-                Publishments
-              </div>
-            </Sticky>
-            <Sticky stickyPosition={StickyPositionType.Both}>
-              <div role="heading" aria-level={1} className={classNames.sticky}>
-                Sign Up for Our Mailing List
-              </div>
+        <Box sx={{ 
+          height: '840vh', 
+          position: 'relative', 
+          maxHeight: 'inherit',
+          width: '100%',
+          overflow: 'auto'
+        }}>
+          <Box sx={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: 'background.paper' }}>
+            <Paper 
+              elevation={0}
+              sx={{ 
+                padding: '5px 20px 5px 10px',
+                fontSize: '13px',
+                borderTop: '1px solid',
+                borderBottom: '1px solid',
+                borderColor: 'divider'
+              }}
+            >
+              <Box component="h1" sx={{ margin: 0 }}>Publishments</Box>
+            </Paper>
+          </Box>
+          <Box sx={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: 'background.paper' }}>
+            <Paper 
+              elevation={0}
+              sx={{ 
+                padding: '5px 20px 5px 10px',
+                fontSize: '13px',
+                borderTop: '1px solid',
+                borderBottom: '1px solid',
+                borderColor: 'divider'
+              }}
+            >
+              <Box component="h1" sx={{ margin: 0 }}>Sign Up for Our Mailing List</Box>
+            </Paper>
+            <Box sx={{ padding: '15px 10px' }}>
               <Signup /> {/* add the Signup component */}
-            </Sticky>
+            </Box>
+          </Box>
+          <Box sx={{ padding: '15px 10px' }}>
             <Publishments/>
-            <Sticky stickyPosition={StickyPositionType.Both}>
-              <div role="heading" aria-level={1} className={classNames.sticky}>
-                Skills
-              </div>
-            </Sticky>
+          </Box>
+          <Box sx={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: 'background.paper' }}>
+            <Paper 
+              elevation={0}
+              sx={{ 
+                padding: '5px 20px 5px 10px',
+                fontSize: '13px',
+                borderTop: '1px solid',
+                borderBottom: '1px solid',
+                borderColor: 'divider'
+              }}
+            >
+              <Box component="h1" sx={{ margin: 0 }}>Skills</Box>
+            </Paper>
+          </Box>
+          <Box sx={{ padding: '15px 10px' }}>
             <Skills/>
-          </ScrollablePane>
-        </div>
+          </Box>
+        </Box>
       </div>
     </React.Fragment>
   )

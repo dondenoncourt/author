@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField, PrimaryButton, Panel } from '@fluentui/react';
+import { TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions, Box } from '@mui/material';
 
 const MailingListSignup = () => {
     const [name, setName] = useState('');
@@ -34,7 +34,8 @@ const MailingListSignup = () => {
         }
       };
 
-    const handleEmailChange = (event, value) => {
+    const handleEmailChange = (event) => {
+        const value = event.target.value;
         setEmail(value);
         if (!isValidEmail(value)) {
             setEmailError('Please enter a valid email address');
@@ -51,30 +52,42 @@ const MailingListSignup = () => {
 
     return (
         <>
-            <PrimaryButton onClick={() => setIsOpen(true)}>Sign Up for Our Mailing List</PrimaryButton>
-            <Panel
-                isOpen={isOpen}
-                onDismiss={() => setIsOpen(false)}
-                headerText="Sign Up for Our Mailing List"
-                closeButtonAriaLabel="Close"
+            <Button variant="contained" onClick={() => setIsOpen(true)}>Sign Up for Our Mailing List</Button>
+            <Dialog
+                open={isOpen}
+                onClose={() => setIsOpen(false)}
+                maxWidth="sm"
+                fullWidth
             >
-                <form onSubmit={handleSubmit}>
-                    <TextField
-                        label="Name"
-                        value={name}
-                        onChange={(event, value) => setName(value)}
-                        required
-                    />
-                    <TextField
-                        label="Email"
-                        value={email}
-                        onChange={handleEmailChange}
-                        errorMessage={emailError}
-                        required
-                    />
-                    <PrimaryButton type="submit">Sign Up</PrimaryButton>
-                </form>
-            </Panel>
+                <Box component="form" onSubmit={handleSubmit}>
+                    <DialogTitle>Sign Up for Our Mailing List</DialogTitle>
+                    <DialogContent>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 2 }}>
+                            <TextField
+                                label="Name"
+                                value={name}
+                                onChange={(event) => setName(event.target.value)}
+                                required
+                                fullWidth
+                            />
+                            <TextField
+                                label="Email"
+                                type="email"
+                                value={email}
+                                onChange={handleEmailChange}
+                                error={!!emailError}
+                                helperText={emailError}
+                                required
+                                fullWidth
+                            />
+                        </Box>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => setIsOpen(false)}>Cancel</Button>
+                        <Button type="submit" variant="contained">Sign Up</Button>
+                    </DialogActions>
+                </Box>
+            </Dialog>
         </>
     );
 };
