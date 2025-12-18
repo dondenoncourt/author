@@ -3,11 +3,15 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import './index.css';
 import App from './App';
-import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const theme = createTheme();
 
 ReactDOM.render(
-  <FluentProvider theme={webLightTheme} >
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
     <App />
-  </FluentProvider>, document.getElementById("root")
+  </ThemeProvider>, document.getElementById("root")
 );
 
