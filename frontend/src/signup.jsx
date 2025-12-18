@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { TextField, Button, Box, Typography, Alert } from '@mui/material';
 
-const MailingListSignup = () => {
+const MailingListSignup = ({ onSuccess }) => {
     const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [success, setSuccess] = useState(false);
@@ -18,6 +19,7 @@ const MailingListSignup = () => {
             body: JSON.stringify({
               subscriber: {
                 first_name: name,
+                last_name: lastName,
                 email: email,
               },
             }),
@@ -27,10 +29,15 @@ const MailingListSignup = () => {
             console.log('Subscriber created successfully');
             setSuccess(true);
             setName('');
+            setLastName('');
             setEmail('');
             setEmailError('');
-            // Clear success message after 5 seconds
-            setTimeout(() => setSuccess(false), 5000);
+            // Navigate to home page after 4 seconds
+            setTimeout(() => {
+              if (onSuccess) {
+                onSuccess();
+              }
+            }, 4000);
           } else {
             console.log('Error creating subscriber');
           }
@@ -67,9 +74,21 @@ const MailingListSignup = () => {
             )}
             <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <TextField
-                    label="Name"
+                    label="First Name"
                     value={name}
                     onChange={(event) => setName(event.target.value)}
+                    required
+                    fullWidth
+                    sx={{
+                        '& .MuiInputBase-root': {
+                            backgroundColor: 'white',
+                        },
+                    }}
+                />
+                <TextField
+                    label="Last Name"
+                    value={lastName}
+                    onChange={(event) => setLastName(event.target.value)}
                     required
                     fullWidth
                     sx={{

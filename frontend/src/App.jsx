@@ -103,7 +103,7 @@ function App() {
                 <Publishments/>
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <Signup />
+                <Signup onSuccess={() => setValue(0)} />
               </TabPanel>
               <TabPanel value={value} index={3}>
                 <Skills/>
