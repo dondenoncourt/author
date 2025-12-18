@@ -1,77 +1,115 @@
-import React from 'react';
+import React, { useState } from 'react';
 import testBoard from './shodan-test-board.jpg';
 import './App.css';
 import Skills from './skills.js';
 import Subscribers from './subscribers.js';
 import Publishments from './publishments.js';
 import Signup from './signup.jsx'; // import the Signup component
-import { Box, Paper } from '@mui/material';
+import { Box, Tabs, Tab, Typography } from '@mui/material';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          {children}
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 function App() {
- return (
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
     <React.Fragment>
       <div className="App">
-        <header className="App-header">
-          <img src={testBoard} className="shodan-logo" alt="logo" />
-        </header>
-        <Box sx={{ 
-          height: '840vh', 
-          position: 'relative', 
-          maxHeight: 'inherit',
-          width: '100%',
-          overflow: 'auto'
-        }}>
-          <Box sx={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: 'background.paper' }}>
-            <Paper 
-              elevation={0}
-              sx={{ 
-                padding: '5px 20px 5px 10px',
-                fontSize: '13px',
-                borderTop: '1px solid',
-                borderBottom: '1px solid',
-                borderColor: 'divider'
-              }}
-            >
-              <Box component="h1" sx={{ margin: 0 }}>Publishments</Box>
-            </Paper>
+        <Box sx={{ width: '100%' }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs value={value} onChange={handleChange} aria-label="main navigation tabs">
+              <Tab label="Home" {...a11yProps(0)} />
+              <Tab label="Publishments" {...a11yProps(1)} />
+              <Tab label="Sign Up for Our Mailing List" {...a11yProps(2)} />
+              <Tab label="Skills" {...a11yProps(3)} />
+            </Tabs>
           </Box>
-          <Box sx={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: 'background.paper' }}>
-            <Paper 
-              elevation={0}
-              sx={{ 
-                padding: '5px 20px 5px 10px',
-                fontSize: '13px',
-                borderTop: '1px solid',
-                borderBottom: '1px solid',
-                borderColor: 'divider'
+          {value === 0 ? (
+            <Box
+              sx={{
+                position: 'relative',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
-              <Box component="h1" sx={{ margin: 0 }}>Sign Up for Our Mailing List</Box>
-            </Paper>
-            <Box sx={{ padding: '15px 10px' }}>
-              <Signup /> {/* add the Signup component */}
+              <Box
+                component="img"
+                src={testBoard}
+                alt="Don Denoncourt"
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                }}
+              />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                  padding: '20px 40px',
+                  borderRadius: '4px',
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  component="div"
+                  sx={{
+                    color: 'white',
+                    fontWeight: 'bold',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
+                  }}
+                >
+                  Don Denoncourt, Author
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-          <Box sx={{ padding: '15px 10px' }}>
-            <Publishments/>
-          </Box>
-          <Box sx={{ position: 'sticky', top: 0, zIndex: 1, backgroundColor: 'background.paper' }}>
-            <Paper 
-              elevation={0}
-              sx={{ 
-                padding: '5px 20px 5px 10px',
-                fontSize: '13px',
-                borderTop: '1px solid',
-                borderBottom: '1px solid',
-                borderColor: 'divider'
-              }}
-            >
-              <Box component="h1" sx={{ margin: 0 }}>Skills</Box>
-            </Paper>
-          </Box>
-          <Box sx={{ padding: '15px 10px' }}>
-            <Skills/>
-          </Box>
+          ) : (
+            <>
+              <TabPanel value={value} index={1}>
+                <Publishments/>
+              </TabPanel>
+              <TabPanel value={value} index={2}>
+                <Signup />
+              </TabPanel>
+              <TabPanel value={value} index={3}>
+                <Skills/>
+              </TabPanel>
+            </>
+          )}
         </Box>
       </div>
     </React.Fragment>
