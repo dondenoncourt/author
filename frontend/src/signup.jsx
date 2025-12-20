@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TextField, Button, Box, Typography, Alert } from '@mui/material';
+import axios from 'axios';
 
 const MailingListSignup = ({ onSuccess }) => {
     const [name, setName] = useState('');
@@ -11,21 +12,15 @@ const MailingListSignup = ({ onSuccess }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (isValidEmail(email)) {
-          const response = await fetch('/subscribers', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
+          try {
+            await axios.post('/subscribers', {
               subscriber: {
                 first_name: name,
                 last_name: lastName,
                 email: email,
               },
-            }),
-          });
+            });
     
-          if (response.ok) {
             console.log('Subscriber created successfully');
             setSuccess(true);
             setName('');
@@ -38,8 +33,8 @@ const MailingListSignup = ({ onSuccess }) => {
                 onSuccess();
               }
             }, 4000);
-          } else {
-            console.log('Error creating subscriber');
+          } catch (error) {
+            console.log('Error creating subscriber:', error);
           }
         } else {
           setEmailError('Please enter a valid email address');
