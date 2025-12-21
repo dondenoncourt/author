@@ -2,7 +2,7 @@ const Skill=()=>{
     return(
        <section>
         <h3>⚒ Skills</h3>
-        <ul>
+        <ul style={{ listStyleType: 'none' }}>
             <li>RPG</li>
             <li>Cobol</li>
             <li>Java</li>
