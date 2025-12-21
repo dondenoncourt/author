@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardMedia, Typography, Box, Stack } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Box, Stack, Tooltip } from '@mui/material';
 
 const openDocument = (link) => { window.open(link); }
 
@@ -25,23 +25,24 @@ const Publishments=() => {
       gap: 5
     }}>
       {publishments.map((publishment, index) => (
-        <Card
-          key={index}
-          aria-label={publishment.title}
-          sx={{ 
-            height: '250px',
-            width: '300px',
-            margin: '5px',
-            backgroundColor: '#f2f2f2',
-            cursor: 'pointer',
-            '&:hover': {
-              boxShadow: 4
-            }
-          }}
-          onClick={() => openDocument(publishment.link)}
-          onMouseEnter={() => setHoveredCardIndex(index)}
-          onMouseLeave={() => setHoveredCardIndex(null)}
-        >
+        <Tooltip title="Click to read" arrow>
+          <Card
+            key={index}
+            aria-label={publishment.title}
+            sx={{ 
+              height: '250px',
+              width: '300px',
+              margin: '5px',
+              backgroundColor: '#f2f2f2',
+              cursor: 'pointer',
+              '&:hover': {
+                boxShadow: 4
+              }
+            }}
+            onClick={() => openDocument(publishment.link)}
+            onMouseEnter={() => setHoveredCardIndex(index)}
+            onMouseLeave={() => setHoveredCardIndex(null)}
+          >
           <CardContent
             onMouseEnter={() => setHoveredCardContentIndex(index)}
             onMouseLeave={() => setHoveredCardContentIndex(null)}
@@ -64,8 +65,11 @@ const Publishments=() => {
             }}
             image={publishment.image}
             alt={publishment.title}
+            onMouseEnter={() => setHoveredCardContentIndex(index)}
+            onMouseLeave={() => setHoveredCardContentIndex(null)}
           />
         </Card>
+        </Tooltip>
       ))}
     </Box>
   );
