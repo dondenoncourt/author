@@ -6,6 +6,8 @@ const openDocument = (link) => { window.open(link); }
 const Publishments=() => {
   const publishmentsAPI = "publishments.json";
   const [publishments, setPublishments] = useState([]);
+  const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
+  const [hoveredCardContentIndex, setHoveredCardContentIndex] = useState(null);
 
   useEffect(()=> {
     fetch(publishmentsAPI)
@@ -37,18 +39,29 @@ const Publishments=() => {
             }
           }}
           onClick={() => openDocument(publishment.link)}
+          onMouseEnter={() => setHoveredCardIndex(index)}
+          onMouseLeave={() => setHoveredCardIndex(null)}
         >
-          <CardContent>
+          <CardContent
+            onMouseEnter={() => setHoveredCardContentIndex(index)}
+            onMouseLeave={() => setHoveredCardContentIndex(null)}
+          >
             <Typography variant="h6" component="div" gutterBottom>
               {publishment.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {publishment.summary}
-            </Typography>
+            {hoveredCardContentIndex === index && (
+              <Typography variant="body2" color="text.secondary">
+                {publishment.summary}
+              </Typography>
+            )}
           </CardContent>
           <CardMedia
             component="img"
-            height="100"
+            sx={{
+              height: hoveredCardContentIndex === index ? '100px' : '100%',
+              flex: hoveredCardContentIndex === index ? '0 0 100px' : '1 1 auto',
+              objectFit: hoveredCardContentIndex === index ? 'cover' : 'contain'
+            }}
             image={publishment.image}
             alt={publishment.title}
           />
