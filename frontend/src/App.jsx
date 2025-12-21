@@ -26,7 +26,7 @@ function TabPanel(props) {
   );
 }
 
-function a11yProps(index) {
+function tabProps(index) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
@@ -46,10 +46,10 @@ function App() {
         <Box sx={{ width: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={handleChange} aria-label="main navigation tabs">
-              <Tab label="Home" {...a11yProps(0)} />
-              <Tab label="Publishments" {...a11yProps(1)} />
-              <Tab label="Sign Up for Our Mailing List" {...a11yProps(2)} />
-              <Tab label="Skills" {...a11yProps(3)} />
+              <Tab label="Home" {...tabProps(0)} />
+              <Tab label="Publishments" {...tabProps(1)} />
+              <Tab label="Sign Up for Our Mailing List" {...tabProps(2)} />
+              <Tab label="Skills" {...tabProps(3)} />
             </Tabs>
           </Box>
           {value === 0 ? (
