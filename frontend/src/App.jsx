@@ -4,13 +4,25 @@ import './App.css';
 import Skills from './skills.js';
 import Publishments from './publishments.js';
 import Signup from './signup.jsx'; // import the Signup component
-import { Tabs, Tab } from 'react-bootstrap';
+import { Tabs, Tab, Offcanvas } from 'react-bootstrap';
 
 function App() {
   const [value, setValue] = useState('0');
+  const [showSignup, setShowSignup] = useState(false);
 
   const handleChange = (eventKey) => {
-    setValue(eventKey);
+    if (eventKey === '2') {
+      setShowSignup(true);
+      // Keep the current tab active, or switch to home
+      setValue('0');
+    } else {
+      setValue(eventKey);
+    }
+  };
+
+  const handleSignupSuccess = () => {
+    setShowSignup(false);
+    setValue('0');
   };
 
   return (
@@ -72,9 +84,6 @@ function App() {
               </div>
             </Tab>
             <Tab eventKey="2" title="Sign Up for Our Mailing List">
-              <div style={{ padding: '1rem' }}>
-                <Signup onSuccess={() => setValue('0')} />
-              </div>
             </Tab>
             <Tab eventKey="3" title="Skills">
               <div style={{ padding: '1rem' }}>
@@ -82,6 +91,14 @@ function App() {
               </div>
             </Tab>
           </Tabs>
+          <Offcanvas show={showSignup} onHide={() => setShowSignup(false)} placement="end">
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>Sign Up for Our Mailing List</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Signup onSuccess={handleSignupSuccess} />
+            </Offcanvas.Body>
+          </Offcanvas>
         </div>
       </div>
     </React.Fragment>

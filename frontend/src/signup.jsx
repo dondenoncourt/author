@@ -69,10 +69,9 @@ const MailingListSignup = ({ onSuccess }) => {
             )}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                    <Form.Label>First Name</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="First Name"
+                        placeholder=""
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                         required
@@ -80,7 +79,6 @@ const MailingListSignup = ({ onSuccess }) => {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Last Name</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Last Name"
@@ -91,7 +89,6 @@ const MailingListSignup = ({ onSuccess }) => {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
                     <Form.Control
                         type="email"
                         placeholder="Email"
