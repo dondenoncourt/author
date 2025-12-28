@@ -3,15 +3,9 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import './index.css';
 import App from './App';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-const theme = createTheme();
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <App />
-  </ThemeProvider>, document.getElementById("root")
+  <App />, document.getElementById("root")
 );
 

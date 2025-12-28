@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextField, Button, Box, Typography, Alert } from '@mui/material';
+import { Form, Button, Alert, Container } from 'react-bootstrap';
 import axios from 'axios';
 
 const MailingListSignup = ({ onSuccess }) => {
@@ -58,60 +58,60 @@ const MailingListSignup = ({ onSuccess }) => {
     };
 
     return (
-        <Box sx={{ maxWidth: 500, mx: 'auto' }}>
-            <Typography variant="h5" gutterBottom>
+        <Container style={{ maxWidth: 500, margin: '0 auto' }}>
+            <h5 className="mb-3">
                 Sign Up for Our Mailing List
-            </Typography>
+            </h5>
             {success && (
-                <Alert severity="success" sx={{ mb: 2 }}>
+                <Alert variant="success" className="mb-3">
                     Thank you! You've been successfully added to our mailing list.
                 </Alert>
             )}
-            <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <TextField
-                    label="First Name"
-                    value={name}
-                    onChange={(event) => setName(event.target.value)}
-                    required
-                    fullWidth
-                    sx={{
-                        '& .MuiInputBase-root': {
-                            backgroundColor: 'white',
-                        },
-                    }}
-                />
-                <TextField
-                    label="Last Name"
-                    value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
-                    required
-                    fullWidth
-                    sx={{
-                        '& .MuiInputBase-root': {
-                            backgroundColor: 'white',
-                        },
-                    }}
-                />
-                <TextField
-                    label="Email"
-                    type="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    error={!!emailError}
-                    helperText={emailError}
-                    required
-                    fullWidth
-                    sx={{
-                        '& .MuiInputBase-root': {
-                            backgroundColor: 'white',
-                        },
-                    }}
-                />
-                <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="First Name"
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        required
+                        style={{ backgroundColor: 'white' }}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Last Name"
+                        value={lastName}
+                        onChange={(event) => setLastName(event.target.value)}
+                        required
+                        style={{ backgroundColor: 'white' }}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={handleEmailChange}
+                        isInvalid={!!emailError}
+                        required
+                        style={{ backgroundColor: 'white' }}
+                    />
+                    {emailError && (
+                        <Form.Control.Feedback type="invalid">
+                            {emailError}
+                        </Form.Control.Feedback>
+                    )}
+                </Form.Group>
+                <Button type="submit" variant="primary" className="mt-2">
                     Sign Up
                 </Button>
-            </Box>
-        </Box>
+            </Form>
+        </Container>
     );
 };
 

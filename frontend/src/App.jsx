@@ -4,112 +4,85 @@ import './App.css';
 import Skills from './skills.js';
 import Publishments from './publishments.js';
 import Signup from './signup.jsx'; // import the Signup component
-import { Box, Tabs, Tab, Typography } from '@mui/material';
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
-    </div>
-  );
-}
-
-function tabProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+import { Tabs, Tab } from 'react-bootstrap';
 
 function App() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('0');
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleChange = (eventKey) => {
+    setValue(eventKey);
   };
 
   return (
     <React.Fragment>
       <div className="App">
-        <Box sx={{ width: '100%' }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="main navigation tabs">
-              <Tab label="Home" {...tabProps(0)} />
-              <Tab label="Publishments" {...tabProps(1)} />
-              <Tab label="Sign Up for Our Mailing List" {...tabProps(2)} />
-              <Tab label="Skills" {...tabProps(3)} />
-            </Tabs>
-          </Box>
-          {value === 0 ? (
-            <Box
-              sx={{
-                position: 'relative',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Box
-                component="img"
-                src={testBoard}
-                alt="Don Denoncourt"
-                sx={{
+        <div style={{ width: '100%' }}>
+          <Tabs
+            activeKey={value}
+            onSelect={handleChange}
+            className="mb-3"
+            style={{ borderBottom: '1px solid #dee2e6' }}
+          >
+            <Tab eventKey="0" title="Home">
+              <div
+                style={{
+                  position: 'relative',
                   width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                }}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                  padding: '20px 40px',
-                  borderRadius: '4px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}
               >
-                <Typography
-                  variant="h3"
-                  component="div"
-                  sx={{
-                    color: 'white',
-                    fontWeight: 'bold',
-                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
+                <img
+                  src={testBoard}
+                  alt="Don Denoncourt"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                  }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    padding: '20px 40px',
+                    borderRadius: '4px',
                   }}
                 >
-                  Don Denoncourt, Author
-                </Typography>
-              </Box>
-            </Box>
-          ) : (
-            <>
-              <TabPanel value={value} index={1}>
+                  <h3
+                    style={{
+                      color: 'white',
+                      fontWeight: 'bold',
+                      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
+                      margin: 0,
+                    }}
+                  >
+                    Don Denoncourt, Author
+                  </h3>
+                </div>
+              </div>
+            </Tab>
+            <Tab eventKey="1" title="Publishments">
+              <div style={{ padding: '1rem' }}>
                 <Publishments/>
-              </TabPanel>
-              <TabPanel value={value} index={2}>
-                <Signup onSuccess={() => setValue(0)} />
-              </TabPanel>
-              <TabPanel value={value} index={3}>
+              </div>
+            </Tab>
+            <Tab eventKey="2" title="Sign Up for Our Mailing List">
+              <div style={{ padding: '1rem' }}>
+                <Signup onSuccess={() => setValue('0')} />
+              </div>
+            </Tab>
+            <Tab eventKey="3" title="Skills">
+              <div style={{ padding: '1rem' }}>
                 <Skills/>
-              </TabPanel>
-            </>
-          )}
-        </Box>
+              </div>
+            </Tab>
+          </Tabs>
+        </div>
       </div>
     </React.Fragment>
   )

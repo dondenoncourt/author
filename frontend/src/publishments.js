@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardMedia, Typography, Box, Stack, Tooltip } from '@mui/material';
+import { Card, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const openDocument = (link) => { window.open(link); }
 
@@ -17,61 +17,69 @@ const Publishments=() => {
   }, [])
 
   return(
-    <Box sx={{ 
+    <div style={{ 
       display: 'flex', 
       flexFlow: 'row wrap', 
       justifyContent: 'space-between', 
       alignItems: 'center',
-      gap: 5
+      gap: '3rem'
     }}>
-      {publishments.map((publishment, index) => (
-        <Tooltip title="Click to read" arrow>
-          <Card
-            key={index}
-            aria-label={publishment.title}
-            sx={{ 
-              height: '250px',
-              width: '300px',
-              margin: '5px',
-              backgroundColor: '#f2f2f2',
-              cursor: 'pointer',
-              '&:hover': {
-                boxShadow: 4
-              }
-            }}
-            onClick={() => openDocument(publishment.link)}
-            onMouseEnter={() => setHoveredCardIndex(index)}
-            onMouseLeave={() => setHoveredCardIndex(null)}
-          >
-          <CardContent
-            onMouseEnter={() => setHoveredCardContentIndex(index)}
-            onMouseLeave={() => setHoveredCardContentIndex(null)}
-          >
-            <Typography variant="h6" component="div" gutterBottom>
-              {publishment.title}
-            </Typography>
-            {hoveredCardContentIndex === index && (
-              <Typography variant="body2" color="text.secondary">
-                {publishment.summary}
-              </Typography>
-            )}
-          </CardContent>
-          <CardMedia
-            component="img"
-            sx={{
-              height: hoveredCardContentIndex === index ? '100px' : '100%',
-              flex: hoveredCardContentIndex === index ? '0 0 100px' : '1 1 auto',
-              objectFit: hoveredCardContentIndex === index ? 'cover' : 'contain'
-            }}
-            image={publishment.image}
-            alt={publishment.title}
-            onMouseEnter={() => setHoveredCardContentIndex(index)}
-            onMouseLeave={() => setHoveredCardContentIndex(null)}
-          />
-        </Card>
-        </Tooltip>
-      ))}
-    </Box>
+      {publishments.map((publishment, index) => {
+        const tooltip = (
+          <Tooltip id={`tooltip-${index}`}>
+            Click to read
+          </Tooltip>
+        );
+
+        return (
+          <OverlayTrigger key={index} placement="top" overlay={tooltip}>
+            <Card
+              aria-label={publishment.title}
+              style={{ 
+                height: '250px',
+                width: '300px',
+                margin: '5px',
+                backgroundColor: '#f2f2f2',
+                cursor: 'pointer',
+                border: '1px solid #dee2e6'
+              }}
+              className="shadow-sm"
+              onMouseEnter={() => {
+                setHoveredCardIndex(index);
+              }}
+              onMouseLeave={() => {
+                setHoveredCardIndex(null);
+              }}
+              onClick={() => openDocument(publishment.link)}
+            >
+              <Card.Body
+                onMouseEnter={() => setHoveredCardContentIndex(index)}
+                onMouseLeave={() => setHoveredCardContentIndex(null)}
+              >
+                <h6 className="mb-2">
+                  {publishment.title}
+                </h6>
+                {hoveredCardContentIndex === index && (
+                  <p className="text-muted small mb-0">
+                    {publishment.summary}
+                  </p>
+                )}
+              </Card.Body>
+              <Card.Img
+                style={{
+                  height: hoveredCardContentIndex === index ? '100px' : '100%',
+                  objectFit: hoveredCardContentIndex === index ? 'cover' : 'contain'
+                }}
+                src={publishment.image}
+                alt={publishment.title}
+                onMouseEnter={() => setHoveredCardContentIndex(index)}
+                onMouseLeave={() => setHoveredCardContentIndex(null)}
+              />
+            </Card>
+          </OverlayTrigger>
+        );
+      })}
+    </div>
   );
 }
 
