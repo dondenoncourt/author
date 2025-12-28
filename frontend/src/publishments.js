@@ -40,10 +40,9 @@ const Publishments=() => {
                 width: '300px',
                 margin: '5px',
                 backgroundColor: '#f2f2f2',
-                cursor: 'pointer',
-                border: '1px solid #dee2e6'
+                cursor: 'pointer'
               }}
-              className="shadow-sm"
+              className="shadow-sm d-flex flex-column overflow-hidden border"
               onMouseEnter={() => {
                 setHoveredCardIndex(index);
               }}
@@ -53,6 +52,7 @@ const Publishments=() => {
               onClick={() => openDocument(publishment.link)}
             >
               <Card.Body
+                className="flex-shrink-0"
                 onMouseEnter={() => setHoveredCardContentIndex(index)}
                 onMouseLeave={() => setHoveredCardContentIndex(null)}
               >
@@ -67,8 +67,11 @@ const Publishments=() => {
               </Card.Body>
               <Card.Img
                 style={{
-                  height: hoveredCardContentIndex === index ? '100px' : '100%',
-                  objectFit: hoveredCardContentIndex === index ? 'cover' : 'contain'
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  flex: '1 1 auto',
+                  minHeight: 0
                 }}
                 src={publishment.image}
                 alt={publishment.title}
