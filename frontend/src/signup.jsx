@@ -71,7 +71,7 @@ const MailingListSignup = ({ onSuccess }) => {
                 <Form.Group className="mb-3">
                     <Form.Control
                         type="text"
-                        placeholder=""
+                        placeholder="First Name"
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                         required

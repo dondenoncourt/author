@@ -3,7 +3,7 @@ import testBoard from './shodan-test-board.jpg';
 import './App.css';
 import Skills from './skills.js';
 import Publishments from './publishments.js';
-import Signup from './signup.jsx'; // import the Signup component
+import Signup from './signup.jsx';
 import { Tabs, Tab, Offcanvas } from 'react-bootstrap';
 
 function App() {
