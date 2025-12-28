@@ -11,7 +11,7 @@ Subscriber.create(first_name: 'Suzanne', last_name: 'Denoncourt', email: 'suzann
 
 Publishment.create(title: 'Our Boring Chickens: Hatchet, Quarter, and Ghost', link: 'https://medium.com/@dondenoncourt/our-boring-chickens-hatchet-quarter-and-ghost-16c55e9a5fa8', summary: 'My wife wanted bees and chickens. Ten years ago we got the bees. But, for chickens, we had to move out of the county.', published_at: '2022-05-24', image: "boring_chickens.jpg", style: 'post')
 
-Publishment.create(title: 'Cardiac Karate', link: 'https://medium.com/@dondenoncourt/cardiac-kata-610d2ce0df08', summary: 'Myocardial infarction. Heart attack. That’s not what I had. I coped with surgery and did rehap reinvigorating my decades of karate training.', published_at: '2021-09-15', image: 'heart.jpg', style: 'post')
+Publishment.create(title: 'Cardiac Karate', link: 'https://medium.com/@dondenoncourt/cardiac-kata-610d2ce0df08', summary: 'Myocardial infarction. Heart attack. That’s not what I had. I coped with surgery and did rehab reinvigorating my decades of karate training.', published_at: '2021-09-15', image: 'heart.jpg', style: 'post')
 
 Publishment.create(title: 'I am a Fat Person', link: 'https://medium.com/@dondenoncourt/i-am-a-fat-person-c3167b843040', summary: 'I have been battling fat all my life. I discuss various diets, philosophies, and a recent solution with intermittent fasting', published_at: '2020-01-19', image: 'fat_dad.jpg', style: 'post')
 
