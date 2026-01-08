@@ -1,5 +1,5 @@
 class PublishmentsController < ApplicationController
-  before_action :set_publishment, only: %i[ show update destroy ]
+  before_action :set_publishment, only: %i[show update destroy]
 
   # GET /publishments
   def index
@@ -44,13 +44,14 @@ class PublishmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_publishment
-      @publishment = Publishment.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def publishment_params
-      params.require(:publishment).permit(:first_name, :last_name, :email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_publishment
+    @publishment = Publishment.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def publishment_params
+    params.require(:publishment).permit(:first_name, :last_name, :email)
+  end
 end

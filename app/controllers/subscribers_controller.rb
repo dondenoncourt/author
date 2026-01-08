@@ -1,5 +1,5 @@
 class SubscribersController < ApplicationController
-  before_action :set_subscriber, only: %i[ show update destroy ]
+  before_action :set_subscriber, only: %i[show update destroy]
 
   # GET /subscribers
   def index
@@ -47,13 +47,14 @@ class SubscribersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subscriber
-      @subscriber = Subscriber.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def subscriber_params
-      params.require(:subscriber).permit(:first_name, :last_name, :email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_subscriber
+    @subscriber = Subscriber.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def subscriber_params
+    params.require(:subscriber).permit(:first_name, :last_name, :email)
+  end
 end
