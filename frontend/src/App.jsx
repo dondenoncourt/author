@@ -26,7 +26,7 @@ function App() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className="App">
         <div style={{ width: '100%' }}>
           <Tabs
@@ -101,7 +101,7 @@ function App() {
           </Offcanvas>
         </div>
       </div>
-    </React.Fragment>
+    </>
   )
 }
 
