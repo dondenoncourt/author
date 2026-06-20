@@ -28,6 +28,7 @@ To deploy your app, you just need to git add ., git commit -m and then issue git
 
 to start
 `rake start`
+URL: http://localhost:3000
 
 # header
 * books

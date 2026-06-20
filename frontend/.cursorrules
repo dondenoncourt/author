@@ -1,0 +1,153 @@
+# Cursor Rules for JavaScript/React Development
+# 
+# APPLIES TO:
+# - File types: *.js, *.jsx, *.ts, *.tsx
+# - Directories: frontend/
+
+## File Organization and Structure
+
+- All React components should be placed in `frontend/components/`
+- Use PascalCase for component file names (e.g., `ComponentName.jsx`)
+- Create separate `styles.js` files for component styling using `mergeStyleSets` from Fluent UI
+- Keep reusable and generic utilities in `frontend/helpers/` directory
+
+## Component Structure
+
+- For newly created components, use functional components with hooks instead of class components
+- Import React hooks at the top: `import React, { useState, useEffect, useCallback } from 'react'`
+- Use `useIntlMessages` or `useTranslate` hooks for internationalization
+- Implement proper PropTypes for component props
+
+## State Management
+
+- Use `useState` for local component state
+- Use `useContext` for sharing state across components
+- Use `useCallback` for memoizing functions passed as props
+- Use `useMemo` for expensive calculations
+- Use `useEffect` for side effects with proper dependency arrays
+
+## Styling Guidelines
+
+- Use react-bootstrap for styling
+<!-- - Import theme from `'views/FluentPage'` for consistent colors
+- Use semantic color names from the theme palette
+- Follow the existing color scheme: `theme.palette.nav.default` for primary blue, `theme.palette.neutralLighter` for hover states
+- Use consistent spacing: `themme.palette.l1` for padding, `themme.palette.g1` for gaps -->
+
+## API Integration
+
+- Use the `Api` helper from `'helpers/Api'` for HTTP requests
+- Use `Routes` helper from `'helpers/Routes'` for URL generation
+- Handle loading states with `useState` for `isLoading` boolean
+- Implement proper error handling with try/catch blocks
+- Use `displayMessage.apiError(error)` for error notifications
+
+## Chart Components
+
+<!-- - Use the existing `DoughnutChart` component for data visualization
+- Structure chart data as arrays of objects with `label`, `value`, and `color` properties
+- Use `DetailsTable` component for displaying tabular data
+- Implement collapsible sections with expand/collapse functionality
+- Use consistent color coding for chart segments -->
+
+## Feature Flags
+
+- Use `isFeatureActivated('feature_name')` for conditional rendering
+- Wrap feature-specific components with feature flag checks
+- Import from `'helpers/FeatureSwitches'`
+
+## Internationalization
+
+<!-- - Use `useIntlMessages` hook for all user-facing text
+- Structure i18n keys hierarchically (e.g., `'activityLog.charts.detailsTable'`)
+- Provide fallback text for missing translations
+- Use `FormattedMessage` component for complex text formatting -->
+
+## Testing
+
+- Add `data-test-id` attributes to all interactive elements
+- Use descriptive test IDs that match component functionality
+- Follow the pattern: `data-test-id='componentNameElementType'`
+
+## Code Quality
+
+- Use ES6+ features: arrow functions, destructuring, template literals
+- Prefer `const` over `let` unless reassignment is needed
+- Use object shorthand notation when possible
+- Implement proper error boundaries for React components
+- Use early returns to reduce nesting
+
+## Performance
+
+- Memoize expensive calculations with `useMemo`
+- Use `useCallback` for functions passed to child components
+- Implement proper dependency arrays in `useEffect`
+- Avoid creating objects/arrays in render methods
+- Use React.memo for pure components
+
+## Accessibility
+
+- Add proper ARIA attributes for interactive elements
+- Use semantic HTML elements
+- Implement keyboard navigation support
+- Add `role` attributes for custom interactive elements
+- Use `tabIndex` for custom focusable elements
+
+## Error Handling
+
+- Implement proper error boundaries
+- Use try/catch blocks for async operations
+- Display user-friendly error messages
+- Log errors to console for debugging
+- Provide fallback UI for error states
+
+## File Naming Conventions
+
+- Components: `ComponentName/index.jsx`
+- Styles: `ComponentName/styles.js`
+- Tests: `ComponentName.spec.jsx`
+- Utilities: `utilityName.js`
+- Constants: `constants.js`
+
+## Import Organization
+
+1. React and third-party libraries
+2. Internal components and hooks
+3. Utilities and helpers
+4. Styles and assets
+5. Types and constants
+
+## Comments and Documentation
+
+- Use JSDoc comments for complex functions
+- Add TODO comments for future improvements
+- Document complex business logic
+- Explain non-obvious code patterns
+- Use descriptive variable and function names
+
+## Git Commit Messages
+
+- All commit messages MUST start with a ticket number (e.g., "TM-22911: Add new feature")
+- Do not commit code without an associated ticket number
+- Use conventional commit format after ticket number
+- Write descriptive commit messages that explain the changes
+- Reference related issues or pull requests when applicable
+
+<!-- ## Fluent UI components
+- Use Fluent UI 8 components -->
+
+## React Testing Library testing
+- tests should be placed in a directory called `__tests__` within the directory of the tested javascript
+- test file names should end with `.spec.jsx`
+- Import RTL utilities from test setup: `import { screen, waitFor, rtlSetupAsync } from 'testsSetup/test-utils-rtl'`
+- Always use `rtlSetupAsync` for test setup and component rendering: `const { user } = await rtlSetupAsync(jsx())`
+- Use `user.click()` instead of `fireEvent.click()` for user interactions
+- Use `screen` for querying elements in tests
+- Use `waitFor` for handling asynchronous operations and assertions
+- Structure test files with describe blocks for component functionality
+- Place mock data in a `mockFiles` directory under the `__tests__` directory
+- Import mock data from `./mockFiles/mockDataFileName` in test files
+- Use descriptive names for mock data files (e.g., `mockKiraDocumentStatusData.js`) 
+- When mocking the global namespace (window or global) save the original value and restore it in an afterEach block.
+- ALWAYS reset mocks in an afterEach block.  This includes mocks to the global namespace.
+- Minimize the amount of mocks used as much as possible

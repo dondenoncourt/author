@@ -1,0 +1,39 @@
+# Cursor Rules for Ruby on Rails Project
+# 
+# APPLIES TO:
+# - File types: *.rb, *.rake
+
+## Project Overview
+This is a Ruby on Rails 6.1.7 application with React frontend components. The project generally follows Rails conventions.  Cursor Rules for the React application are at `app/frontend/.cursorrules`.
+
+## Ruby Code Style and Conventions
+
+### General Ruby Rules
+- Follow Ruby style guidelines and the project's `.rubocop.yml` configuration
+- Prefer double quotes for strings
+- Prefer `unless` over `if !` for negative conditions, but only if the condition can fit on a single line
+- Use guard clauses to reduce nesting
+- Use Ruby anonymous block arguments where appropriate, e.g. `ary.map{ DoSomething.on(_1) }`
+- Prefer assertive hash access with `hash.fetch(:key)` or pattern matching (`hash => {key:}`) if a key is expected to exist
+- Break onto new lines at a maximum of 120 characters
+
+### Testing
+- Mock as little as possible -- usually only stdin/stdout, API calls, and Time
+- In general, isolate the setup (factory calls, before blocks) to describe blocks for a single method, not the whole class or module
+- Write docstrings assertively (e.g. `it "does this"` rather than `it "should do this"`)
+- In general, expectations that have the same setup should be within the same `it` block to reduce test suite run time
+- ALWAYS prefer `let!` to `let` since the control flow is more obvious
+- Don't use described_class.  It's more indirect and less searchable than just providing the class directly.
+- Expectations with the same setup steps should be combined in the same test case 
+- Group tests by the method under test, not by general concern
+- Don't add comments for expectations which have an obvious meaning
+
+### Performance
+- Use explicit eager loading with `includes` to avoid N+1 queries
+- Use appropriate database indexes on foreign keys
+- Use background jobs for long running operations
+- Use bulk insert, update, and delete with the `DatabaseCommands` module where appropriate
+
+### Logging
+- Use LogError to report caught non-routine exceptions
+
